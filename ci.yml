@@ -1,0 +1,36 @@
+name: reproduction
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      llm_smoke:
+        description: "Lancer aussi un test E5 avec un petit modèle Ollama (qwen2.5:0.5b, 3 patients)"
+        type: boolean
+        default: false
+
+jobs:
+  symbolic:            # tests des algorithmes + reproduction des tableaux E1-E4 de l'article
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -r requirements.txt
+      - run: make test
+      - run: make check
+      - run: make e5-dry
+      - uses: actions/upload-artifact@v4
+        with: { name: tableaux-E1-E4, path: paper/generated/ }
+
+  llm-smoke:           # vérifie la chaîne E5 de bout en bout ; ces chiffres ne sont PAS ceux de l'article
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.llm_smoke }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -r requirements.txt
+      - run: curl -fsSL https://ollama.com/install.sh | sh
+      - run: (nohup ollama serve > ollama.log 2>&1 &) ; sleep 5 ; ollama pull qwen2.5:0.5b
+      - run: make e5 MODEL=qwen2.5:0.5b N=3

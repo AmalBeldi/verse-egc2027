@@ -1,0 +1,14 @@
+\begin{tabular}{llrrrrrrr}
+\hline
+Modèle & Condition & Exact. & Abst. & Halluc. & Unsafe & OK$\rightarrow$err & Couv. & Jetons \\
+\hline
+qwen16k & Texte intégral & 30.0 & 44.2 & 14.3 & 0.0 & 6.2 & 18.3 & 7990 \\
+qwen16k & RAG textuel (BM25) & 33.3 & 23.8 & 19.8 & 0.0 & 5.4 & 26.7 & 1992 \\
+qwen16k & RAG sur DG & 61.7 & 15.0 & 22.9 & 0.0 & 8.8 & 33.8 & 322 \\
+qwen16k & PPR sur DG (HippoRAG) & 55.8 & 15.0 & 21.7 & 0.0 & 5.8 & 29.2 & 1996 \\
+qwen16k & Notre approche & 63.3 & 12.5 & 4.8 & 0.0 & 3.3 & 46.2 & 253 \\
+qwen16k & -- sans repli DG & 38.8 & 48.8 & 5.8 & 0.0 & 3.3 & 41.7 & 81 \\
+qwen16k & -- sans HERSE & 68.3 & 14.2 & 1.5 & 0.0 & 2.9 & 45.8 & 410 \\
+qwen16k & -- sans UP & 63.3 & 12.5 & 5.4 & 0.0 & 3.3 & 45.8 & 253 \\
+\hline
+\end{tabular}

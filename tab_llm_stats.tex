@@ -1,0 +1,14 @@
+\begin{tabular}{llrrr}
+\hline
+Modèle & Condition & Exact. [IC 95\,\%] & $b/c$ & $p$ (McNemar) \\
+\hline
+qwen16k & Texte intégral & 30.0 [25.0 ; 35.0] & 101/21 & 9.7e-14 \\
+qwen16k & RAG textuel (BM25) & 33.3 [26.7 ; 40.0] & 85/13 & 4e-14 \\
+qwen16k & RAG sur DG & 61.7 [57.9 ; 65.4] & 46/42 & 0.75 \\
+qwen16k & PPR sur DG (HippoRAG) & 55.8 [51.2 ; 60.0] & 51/33 & 0.063 \\
+qwen16k & Notre approche & 63.3 [57.1 ; 68.8] & -- & -- \\
+qwen16k & -- sans repli DG & 38.8 [32.5 ; 45.0] & 61/2 & 4.4e-16 \\
+qwen16k & -- sans HERSE & 68.3 [62.9 ; 73.3] & 5/17 & 0.017 \\
+qwen16k & -- sans UP & 63.3 [57.1 ; 69.2] & 4/4 & 1 \\
+\hline
+\end{tabular}
